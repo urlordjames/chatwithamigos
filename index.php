@@ -4,6 +4,6 @@
 	</head>
 	<body>
 		NOT RELATED IN ANY WAY TO THE PUZZLES ON THIS WEBSITE!<br>
-		if you would like to make an account you're gunna have to fucking wait
+		<a href="register">register</a>
 	</body>
 </html>
