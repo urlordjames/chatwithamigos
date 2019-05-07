@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title>register</title>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>
 	<body>
 		<form action="register.php" method="post">
