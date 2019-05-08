@@ -67,21 +67,23 @@
 	}
 	
 	if (verify($response) == true) {
-		$zero = 0;
-		$date = (string)date_timestamp_get(date_create());
 		echo("did a thing maybe?<br>");
 		$conn = mysqli_connect("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "INSERT INTO users (username, password, userid, admin, warnings) VALUES (?, ?, ?, ?, ?)";
-		$stmt = mysqli_prepare($conn, $query);
-		if (!$stmt) {
-			die('mysqli error: '.mysqli_error($conn));
+		$query = "SELECT * FROM users WHERE username=\"" + $username + "\"";
+		$result = $conn->query($query);
+		#TODO: test
+		echo($result);
+		if ($password == $dbpasswd){
+			session_start();
+			#TODO: fix psuedocode
+			$_SESSION["username"] = $result["username"];
 		}
-		mysqli_stmt_bind_param($stmt, "ssssi", $username, $password, $date, $zero, $zero);
-		if (!mysqli_execute($stmt)) {
-			die('stmt error: '.mysqli_stmt_error($stmt));
+		else {
+			echo("no");
+			exit();
 		}
 	}
 	else {
