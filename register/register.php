@@ -11,12 +11,12 @@
 		foreach (str_split($_POST["username"]) as $char) {
 			$valid = false;
 			foreach(str_split($alphabet) as $letter) {
-				if $char == $letter{
+				if ($char == $letter) {
 					$valid = true;
 				}
 			}
 			if ($valid) {
-				$lename += $char;
+				$lename .= $char;
 			}
 			else {
 				echo("username not valid<br>");
