@@ -4,6 +4,6 @@
 	</head>
 	<body>
 		NOT RELATED IN ANY WAY TO THE PUZZLES ON THIS WEBSITE!<br>
-		<a href="register">register</a><br><a href="https://github.com/urlordjames/chatwithamigos">GitHub page</a>
+		<a href="register">register</a><br><a href="login">login</a><br><a href="https://github.com/urlordjames/chatwithamigos">GitHub page</a>
 	</body>
 </html>

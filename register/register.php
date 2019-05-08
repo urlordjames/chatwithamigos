@@ -5,7 +5,6 @@
 	}
 
 	if (isset($_POST["g-recaptcha-response"]) && isset($_POST["username"]) && isset($_POST["password"])) {
-		#TODO: test sanitization
 		$alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		$lename = "";
 		foreach (str_split($_POST["username"]) as $char) {
@@ -20,6 +19,21 @@
 			}
 			else {
 				echo("username not valid<br>");
+				exit();
+			}
+		}
+		$conn = new mysqli("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
+		$array = [];
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		$result = $conn->query("SELECT * FROM users");
+		while ($row = $result->fetch_assoc()) {
+			array_push($array, $row["username"]);
+		}
+		foreach ($array as $name) {
+			if ($lename == $name) {
+				echo("username taken<br>");
 				exit();
 			}
 		}

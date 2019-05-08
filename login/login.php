@@ -7,7 +7,6 @@
 	}
 
 	if (isset($_POST["g-recaptcha-response"]) && isset($_POST["username"]) && isset($_POST["password"])) {
-		#TODO: test sanitization
 		$alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		$lename = "";
 		foreach (str_split($_POST["username"]) as $char) {
