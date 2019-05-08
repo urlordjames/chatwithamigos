@@ -4,13 +4,15 @@
 		$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 	}
 
-	$response = $_POST["g-recaptcha-response"];
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-	
-	if (!$response || !$username || !$password) {
-		#TODO: sanitize
-		exit();
+
+	if ($_POST["g-recaptcha-response"] && $_POST["username"] && $_POST["password"]) {
+		#TODO: sanitize username
+		$response = $_POST["g-recaptcha-response"];
+		$username = $_POST["username"];
+		$password = hash("sha512", $_POST["password"]);
+	}
+	else {
+		exit()
 	}
 	
 	function verify($capdata)
