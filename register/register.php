@@ -4,7 +4,7 @@
 		$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 	}
 
-	if ($_POST["g-recaptcha-response"] && $_POST["username"] && $_POST["password"]) {
+	if (isset($_POST["g-recaptcha-response"]) && isset($_POST["username"]) && isset($_POST["password"])) {
 		#TODO: sanitize username
 		$response = $_POST["g-recaptcha-response"];
 		$username = $_POST["username"];
