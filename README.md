@@ -1,2 +1,2 @@
 # chatwithamigos
-chatwithamigos.rf.gd
+https://expected.ga/chat
