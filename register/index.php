@@ -6,7 +6,7 @@
 	<body>
 		<form action="register.php" method="post">
 			<input type="text" name="username">
-			<input type="text" name="password">
+			<input type="password" name="password">
 			<div class="g-recaptcha" data-sitekey="6LdET6IUAAAAAL4ZSxxa1AGh7LKyp9x1kUvMpqaH"></div>
 			<input type="submit" value="Submit">
 		</form>
