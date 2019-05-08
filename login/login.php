@@ -72,14 +72,15 @@
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "SELECT password FROM users WHERE username=\"" + $username + "\"";
+		$query = "SELECT * FROM users WHERE username=\"" . $username . "\"";
 		$result = $conn->query($query);
+		$dbpasswd = $result->fetch_assoc()["password"];
 		#TODO: test
-		echo($result);
-		if ($password == $result){
+		if ($password == $dbpasswd){
 			session_start();
 			#TODO: fix psuedocode
-			$_SESSION["username"] = $result["username"];
+			echo("yes");
+			#$_SESSION["username"] = $result["username"];
 		}
 		else {
 			echo("no");

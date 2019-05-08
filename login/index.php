@@ -9,7 +9,8 @@
 			<input type="password" name="password">
 			<div class="g-recaptcha" data-sitekey="6LdET6IUAAAAAL4ZSxxa1AGh7LKyp9x1kUvMpqaH"></div>
 			<input type="submit" value="Submit">
-		</form>
+		</form><br>
+		currently registered users:<br>
 		<?php
 			$conn = new mysqli("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
 			if ($conn->connect_error) {
