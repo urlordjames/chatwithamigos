@@ -5,9 +5,26 @@
 	}
 
 	if (isset($_POST["g-recaptcha-response"]) && isset($_POST["username"]) && isset($_POST["password"])) {
-		#TODO: sanitize username
+		#TODO: test sanitization
+		$alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		$lename = "";
+		foreach (str_split($_POST["username"]) as $char) {
+			$valid = false;
+			foreach(str_split($alphabet as $letter) {
+				if $char == $letter{
+					$valid = true;
+				}
+			}
+			if ($valid) {
+				$lename += $char;
+			}
+			else {
+				echo("username not valid<br>");
+				exit();
+			}
+		}
 		$response = $_POST["g-recaptcha-response"];
-		$username = $_POST["username"];
+		$username = $lename;
 		$password = hash("sha512", $_POST["password"]);
 	}
 	else {
@@ -68,5 +85,6 @@
 	}
 	else {
 		echo("false");
+		exit();
 	}
 ?>
