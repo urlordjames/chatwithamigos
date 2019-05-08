@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+
 	if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
 		$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 	}
@@ -75,12 +77,10 @@
 		$query = "SELECT * FROM users WHERE username=\"" . $username . "\"";
 		$result = $conn->query($query);
 		$dbpasswd = $result->fetch_assoc()["password"];
-		#TODO: test
+		$dbname = $result->fetch_assoc()["username"];
 		if ($password == $dbpasswd){
-			session_start();
-			#TODO: fix psuedocode
 			echo("yes");
-			#$_SESSION["username"] = $result["username"];
+			$_SESSION["username"] = $dbname;
 		}
 		else {
 			echo("no");
