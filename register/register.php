@@ -37,6 +37,10 @@
 				exit();
 			}
 		}
+		if (strlen($lename) < 3 || strlen($lename) > 25) {
+			echo("minimum name length is 3, maximum length 25<br>");
+			exit();
+		}
 		$response = $_POST["g-recaptcha-response"];
 		$username = $lename;
 		$password = hash("sha512", $_POST["password"]);
