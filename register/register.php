@@ -10,7 +10,7 @@
 		$lename = "";
 		foreach (str_split($_POST["username"]) as $char) {
 			$valid = false;
-			foreach(str_split($alphabet as $letter) {
+			foreach(str_split($alphabet) as $letter) {
 				if $char == $letter{
 					$valid = true;
 				}
