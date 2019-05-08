@@ -5,6 +5,13 @@
 	}
 
 	$response = $_POST["g-recaptcha-response"];
+	$username = $_POST["username"];
+	$password = $_POST["password"];
+	
+	if (!$response || !$username || !$password) {
+		#TODO: sanitize
+		exit();
+	}
 	
 	function verify($capdata)
 	{
@@ -18,6 +25,7 @@
 		$options = array
 		(
 			'http' => array (
+				'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
 				'method' => 'POST',
 				'content' => http_build_query($data)
 			)
@@ -35,7 +43,22 @@
 		else
 		{
 			return false;
-			echo "wtf did you do?";
+			echo("wtf did you do?");
 		}
+	}
+	
+	if (verify($response) == true) {
+		echo("did a thing maybe?<br>");
+		$conn = new mysqli("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
+		if ($conn->connect_error) {
+			die("Connection failed: " . $conn->connect_error);
+		}
+		$query = $conn->query("INSERT INTO users (username, password, userid, admin, warnings) VALUES (?, ?, NULL, ?, ?");
+		$stmt = mysqli_prepare($conn, $query);
+		mysqli_stmt_bind_param($stmt, "ssisi", $username, $password, "FALSE", 0)
+		mysqli_stmt_execute($stmt)
+	}
+	else {
+		echo("false");
 	}
 ?>
