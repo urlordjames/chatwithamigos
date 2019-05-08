@@ -10,13 +10,13 @@
 		$lename = "";
 		foreach (str_split($_POST["username"]) as $char) {
 			$valid = false;
-			foreach(str_split($alphabet as $letter) {
-				if $char == $letter{
+			foreach (str_split($alphabet) as $letter) {
+				if ($char == $letter) {
 					$valid = true;
 				}
 			}
 			if ($valid) {
-				$lename += $char;
+				$lename .= $char;
 			}
 			else {
 				echo("username not valid<br>");
@@ -72,11 +72,11 @@
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "SELECT * FROM users WHERE username=\"" + $username + "\"";
+		$query = "SELECT password FROM users WHERE username=\"" + $username + "\"";
 		$result = $conn->query($query);
 		#TODO: test
 		echo($result);
-		if ($password == $dbpasswd){
+		if ($password == $result){
 			session_start();
 			#TODO: fix psuedocode
 			$_SESSION["username"] = $result["username"];
