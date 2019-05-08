@@ -1,10 +1,10 @@
 <html>
 	<head>
-		<title>register</title>
+		<title>login</title>
 		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>
 	<body>
-		<form action="register.php" method="post">
+		<form action="login.php" method="post">
 			<input type="text" name="username">
 			<input type="password" name="password">
 			<div class="g-recaptcha" data-sitekey="6LdET6IUAAAAAL4ZSxxa1AGh7LKyp9x1kUvMpqaH"></div>

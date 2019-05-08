@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+
 	if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
 		$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 	}
@@ -10,7 +12,7 @@
 		$lename = "";
 		foreach (str_split($_POST["username"]) as $char) {
 			$valid = false;
-			foreach(str_split($alphabet) as $letter) {
+			foreach (str_split($alphabet) as $letter) {
 				if ($char == $letter) {
 					$valid = true;
 				}
@@ -67,21 +69,22 @@
 	}
 	
 	if (verify($response) == true) {
-		$zero = 0;
-		$date = (string)date_timestamp_get(date_create());
 		echo("did a thing maybe?<br>");
 		$conn = mysqli_connect("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$query = "INSERT INTO users (username, password, userid, admin, warnings) VALUES (?, ?, ?, ?, ?)";
-		$stmt = mysqli_prepare($conn, $query);
-		if (!$stmt) {
-			die('mysqli error: '.mysqli_error($conn));
+		$query = "SELECT * FROM users WHERE username=\"" . $username . "\"";
+		$result = $conn->query($query);
+		$dbpasswd = $result->fetch_assoc()["password"];
+		$dbname = $result->fetch_assoc()["username"];
+		if ($password == $dbpasswd){
+			echo("yes");
+			$_SESSION["username"] = $dbname;
 		}
-		mysqli_stmt_bind_param($stmt, "ssssi", $username, $password, $date, $zero, $zero);
-		if (!mysqli_execute($stmt)) {
-			die('stmt error: '.mysqli_stmt_error($stmt));
+		else {
+			echo("no");
+			exit();
 		}
 	}
 	else {
