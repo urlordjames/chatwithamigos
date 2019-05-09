@@ -76,10 +76,9 @@
 		$query = "SELECT * FROM users WHERE username=\"" . $username . "\"";
 		$result = $conn->query($query);
 		$dbpasswd = $result->fetch_assoc()["password"];
-		$dbname = $result->fetch_assoc()["username"];
 		if ($password == $dbpasswd){
-			echo("yes");
-			$_SESSION["username"] = $dbname;
+			$_SESSION["username"] = $username;
+			echo($username);
 		}
 		else {
 			echo("no");
