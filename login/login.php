@@ -68,7 +68,6 @@
 	}
 	
 	if (verify($response) == true) {
-		echo("did a thing maybe?<br>");
 		$conn = mysqli_connect("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
@@ -78,12 +77,12 @@
 		$dbpasswd = $result->fetch_assoc()["password"];
 		if ($password == $dbpasswd){
 			$_SESSION["username"] = $username;
-			echo($username);
 		}
 		else {
 			echo("no");
 			exit();
 		}
+		header("Location: /chat/message");
 	}
 	else {
 		echo("false");

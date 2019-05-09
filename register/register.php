@@ -87,7 +87,6 @@
 	if (verify($response) == true) {
 		$zero = 0;
 		$date = (string)date_timestamp_get(date_create());
-		echo("did a thing maybe?<br>");
 		$conn = mysqli_connect("localhost", "id9048083_bruhman", "despacito", "id9048083_users");
 		if ($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
@@ -101,6 +100,7 @@
 		if (!mysqli_execute($stmt)) {
 			die('stmt error: '.mysqli_stmt_error($stmt));
 		}
+		header("Location: /chat/login");
 	}
 	else {
 		echo("false");
