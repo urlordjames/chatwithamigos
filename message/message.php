@@ -22,14 +22,20 @@
 		header("Location: /chat/message");
 		exit();
 	}
-	$f = fopen("1.channel", "a+") or die("unable to secure channel");
-	if ($message == "purge") {
-		ftruncate($f, 0);
-		fwrite($f, "hello, welcome to chat with amigos!<br>\n");
-		header("Location: /chat/message");
-		exit();
+	$conn = mysqli_connect("localhost", "id9048083_messagesuser", "despacito", "id9048083_messages");
+	if ($conn->connect_error) {
+		die("unable to secure channel: " . $conn->connect_error);
 	}
-	fwrite($f, "[" . $username . "] " . $message . "<br>\n");
+	$query = "INSERT INTO channel1 (username, message, timestamp) VALUES (?, ?, ?)";
+	$stmt = mysqli_prepare($conn, $query);
+	if (!$stmt) {
+		die('mysqli error: '.mysqli_error($conn));
+	}
+	$date = (string)date_timestamp_get(date_create());
+	mysqli_stmt_bind_param($stmt, "ssi", $username, $message, $date);
+	if (!mysqli_execute($stmt)) {
+		die('stmt error: '.mysqli_stmt_error($stmt));
+	}
 	header("Location: /chat/message");
 	exit();
 ?>
