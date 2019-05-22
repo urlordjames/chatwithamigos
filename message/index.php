@@ -19,7 +19,7 @@
 			window.setInterval(function(chan) {getmessages(chan);}, 5000, chan);
 		</script>
 		<div id="messages"></div>
-		<form action="message.php" method="post">
+		<form action="message.php" method="post" autocomplete="off">
 			<input type="text" name="message">
 			<input type="submit" value="Submit">
 		</form><br>
