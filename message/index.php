@@ -1,17 +1,25 @@
-<?php
-	require_once("../protect.php");
-?>
 <html>
 	<head>
-		<title>stuffs</title>
+		<title>channel1</title>
 	</head>
 	<body>
-		<?php
-			$f = fopen("1.channel", "r") or die("unable to secure channel");
-			echo(fread($f, filesize("1.channel")));
-			echo("<br>" . $username . "<br>");
-		?>
-		<form action="message.php" method="post">
+		<script>
+			function getmessages(channel) {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						document.getElementById("messages").innerHTML = this.responseText;
+					}
+				};
+				xhttp.open("GET", "/chat/message/getmessages.php?channel=" + channel, true);
+				xhttp.send();
+			}
+			var chan = "1";
+			getmessages(chan);
+			window.setInterval(function(chan) {getmessages(chan);}, 5000, chan);
+		</script>
+		<div id="messages"></div>
+		<form action="message.php" method="post" autocomplete="off">
 			<input type="text" name="message">
 			<input type="submit" value="Submit">
 		</form><br>
