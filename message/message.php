@@ -1,6 +1,6 @@
 <?php
 	require_once("../protect.php");
-	$alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ',";
+	$alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ',.?";
 	$message = "";
 	#TODO: allow admins to bypass sanitization
 	foreach (str_split($_POST["message"]) as $char) {
